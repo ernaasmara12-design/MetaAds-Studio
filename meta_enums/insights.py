@@ -40,3 +40,27 @@ ATTRIBUTION = {
     "1 Day View": "1d_view",
     "7 Day Click + 1 Day View": "7d_click,1d_view",
 }
+
+# ==========================
+# Metrics
+# ==========================
+
+METRICS = {
+    "Spend": "spend",
+    "Reach": "reach",
+    "Impressions": "impressions",
+    "Frequency": "frequency",
+
+    "CPM": "cpm",
+    "CPC": "cpc",
+    "CTR": "ctr",
+
+    "Clicks": "clicks",
+    "Inline Clicks": "inline_link_clicks",
+    "Link Clicks": "link_clicks",
+
+    "Landing Page Views": "landing_page_view",
+
+    "Unique Clicks": "unique_clicks",
+    "Unique CTR": "unique_ctr",
+}
