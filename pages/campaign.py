@@ -2,6 +2,15 @@ import streamlit as st
 
 from meta_services.campaign_service import CampaignService
 
+from meta_enums.campaign import (
+    OBJECTIVES,
+    STATUS,
+    BUYING_TYPES,
+    BUDGET_TYPES,
+    BID_STRATEGIES,
+    SPECIAL_AD_CATEGORIES,
+)
+
 st.set_page_config(
     page_title="Campaign",
     page_icon="📢",
@@ -28,29 +37,17 @@ campaign_name = st.text_input(
 
 objective = st.selectbox(
     "Campaign Objective",
-    [
-        "Awareness",
-        "Traffic",
-        "Engagement",
-        "Leads",
-        "App Promotion",
-        "Sales",
-    ]
+    list(OBJECTIVES.keys())
 )
 
 buying_type = st.selectbox(
     "Buying Type",
-    [
-        "AUCTION",
-    ]
+    list(BUYING_TYPES.keys())
 )
 
 campaign_status = st.selectbox(
     "Campaign Status",
-    [
-        "ACTIVE",
-        "PAUSED",
-    ]
+    list(STATUS.keys())
 )
 
 st.divider()
@@ -68,10 +65,7 @@ cbo = st.toggle(
 
 budget_type = st.radio(
     "Budget Type",
-    [
-        "Daily",
-        "Lifetime",
-    ],
+    list(BUDGET_TYPES.keys()),
     horizontal=True,
 )
 
@@ -92,21 +86,12 @@ st.subheader("Bid Strategy")
 
 bid_strategy = st.selectbox(
     "Bid Strategy",
-    [
-        "LOWEST_COST_WITHOUT_CAP",
-        "LOWEST_COST_WITH_BID_CAP",
-        "COST_CAP",
-    ]
+    list(BID_STRATEGIES.keys())
 )
 
 special_category = st.selectbox(
     "Special Ad Category",
-    [
-        "NONE",
-        "HOUSING",
-        "EMPLOYMENT",
-        "CREDIT",
-    ]
+    list(SPECIAL_AD_CATEGORIES.keys())
 )
 
 st.divider()
