@@ -24,12 +24,12 @@ class MetaAuth:
 
         account = AdAccount(account_id)
 
-        account.api_get(
-            fields=[
-                "id",
-                "name",
-                "account_status",
-            ]
-        )
+account_info = account.api_get(
+    fields=[
+        "id",
+        "name",
+        "account_status",
+    ]
+)
 
-        return True
+return account_info
