@@ -15,13 +15,11 @@ from meta_enums.campaign import (
 def build_campaign_payload(data: dict):
 
     payload = {
-        "name": data["campaign_name"],
-        "objective": OBJECTIVES[data["objective"]],
-        "status": STATUS[data["status"]],
-        "buying_type": BUYING_TYPES[data["buying_type"]],
-        "special_ad_categories": SPECIAL_AD_CATEGORIES[data["special_category"]],
-    }
-
+    "name": data["campaign_name"],
+    "objective": OBJECTIVES[data["objective"]],
+    "status": STATUS[data["status"]],
+    "special_ad_categories": SPECIAL_AD_CATEGORIES[data["special_category"]],
+}
     # Budget (CBO)
     if data["cbo"]:
 
