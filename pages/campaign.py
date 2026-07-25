@@ -1,7 +1,6 @@
 import streamlit as st
 
-from meta_services.campaign_service 
-import CampaignService
+from meta_services.campaign_service import CampaignService
 
 st.set_page_config(
     page_title="Campaign",
