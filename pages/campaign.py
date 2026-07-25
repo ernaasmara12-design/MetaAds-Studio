@@ -155,17 +155,18 @@ if create:
             )
 
             campaign = service.create_campaign(
-                {
-                    "campaign_name": campaign_name,
-                    "objective": objective,
-                    "status": campaign_status,
-                    "buying_type": buying_type,
-                    "special_category": special_category,
-                    "cbo": cbo,
-                    "budget_type": budget_type,
-                    "budget": budget,
-                }
-            )
+    {
+        "campaign_name": campaign_name,
+        "objective": objective,
+        "status": campaign_status,
+        "buying_type": buying_type,
+        "special_category": special_category,
+        "cbo": cbo,
+        "budget_type": budget_type,
+        "budget": budget,
+        "bid_strategy": bid_strategy,
+    }
+)
 
             campaign_id = campaign["id"]
 
