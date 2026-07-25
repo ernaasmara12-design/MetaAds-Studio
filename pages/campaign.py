@@ -143,6 +143,27 @@ if preview:
     )
 
 if create:
-    st.warning(
-        "Tahap berikutnya tombol ini akan benar-benar membuat Campaign di Meta."
-)
+
+    errors = []
+
+    if campaign_name.strip() == "":
+        errors.append("Campaign Name wajib diisi.")
+
+    if budget <= 0:
+        errors.append("Budget harus lebih besar dari 0.")
+
+    if len(errors) > 0:
+
+        st.error("Periksa kembali data Campaign.")
+
+        for error in errors:
+            st.write(f"• {error}")
+
+    else:
+
+        st.success("✅ Validasi berhasil")
+
+        st.info(
+            "Tahap berikutnya Campaign akan dikirim ke Meta Marketing API."
+    )
+   
