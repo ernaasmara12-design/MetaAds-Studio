@@ -13,6 +13,10 @@ st.caption(
 
 st.divider()
 
+# ==========================
+# BASIC INFORMATION
+# ==========================
+
 st.subheader("Basic Campaign Information")
 
 campaign_name = st.text_input(
@@ -49,6 +53,96 @@ campaign_status = st.selectbox(
 
 st.divider()
 
-st.info(
-    "Tahap berikutnya kita akan menambahkan pengaturan Budget."
+# ==========================
+# BUDGET
+# ==========================
+
+st.subheader("Campaign Budget")
+
+cbo = st.toggle(
+    "Campaign Budget Optimization (CBO)",
+    value=True,
+)
+
+budget_type = st.radio(
+    "Budget Type",
+    [
+        "Daily",
+        "Lifetime",
+    ],
+    horizontal=True,
+)
+
+budget = st.number_input(
+    "Budget (Rp)",
+    min_value=0,
+    step=1000,
+    value=100000,
+)
+
+st.divider()
+
+# ==========================
+# STRATEGY
+# ==========================
+
+st.subheader("Bid Strategy")
+
+bid_strategy = st.selectbox(
+    "Bid Strategy",
+    [
+        "LOWEST_COST_WITHOUT_CAP",
+        "LOWEST_COST_WITH_BID_CAP",
+        "COST_CAP",
+    ]
+)
+
+special_category = st.selectbox(
+    "Special Ad Category",
+    [
+        "NONE",
+        "HOUSING",
+        "EMPLOYMENT",
+        "CREDIT",
+    ]
+)
+
+st.divider()
+
+col1, col2 = st.columns(2)
+
+with col1:
+    preview = st.button(
+        "Preview Payload",
+        use_container_width=True,
+    )
+
+with col2:
+    create = st.button(
+        "Create Campaign",
+        type="primary",
+        use_container_width=True,
+    )
+
+if preview:
+
+    st.subheader("Preview")
+
+    st.json(
+        {
+            "name": campaign_name,
+            "objective": objective,
+            "buying_type": buying_type,
+            "status": campaign_status,
+            "cbo": cbo,
+            "budget_type": budget_type,
+            "budget": budget,
+            "bid_strategy": bid_strategy,
+            "special_ad_category": special_category,
+        }
+    )
+
+if create:
+    st.warning(
+        "Tahap berikutnya tombol ini akan benar-benar membuat Campaign di Meta."
 )
