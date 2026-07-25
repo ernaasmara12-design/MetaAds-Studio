@@ -1,5 +1,8 @@
 import streamlit as st
 
+from meta_services.campaign_service 
+import CampaignService
+
 st.set_page_config(
     page_title="Campaign",
     page_icon="📢",
@@ -152,7 +155,7 @@ if create:
     if budget <= 0:
         errors.append("Budget harus lebih besar dari 0.")
 
-    if len(errors) > 0:
+    if errors:
 
         st.error("Periksa kembali data Campaign.")
 
@@ -161,9 +164,33 @@ if create:
 
     else:
 
-        st.success("✅ Validasi berhasil")
+        try:
 
-        st.info(
-            "Tahap berikutnya Campaign akan dikirim ke Meta Marketing API."
-    )
-   
+            service = CampaignService(
+                st.session_state["account_id"]
+            )
+
+            campaign = service.create_campaign(
+                {
+                    "campaign_name": campaign_name,
+                    "objective": objective,
+                    "status": campaign_status,
+                    "buying_type": buying_type,
+                    "special_category": special_category,
+                    "cbo": cbo,
+                    "budget_type": budget_type,
+                    "budget": budget,
+                }
+            )
+
+            campaign_id = campaign["id"]
+
+            st.session_state["campaign_id"] = campaign_id
+
+            st.success("✅ Campaign berhasil dibuat")
+
+            st.write("Campaign ID:", campaign_id)
+
+        except Exception as e:
+
+            st.error(str(e))
