@@ -33,8 +33,8 @@ BUDGET_TYPES = {
 # Bid Strategy
 BID_STRATEGIES = {
     "Lowest Cost": "LOWEST_COST_WITHOUT_CAP",
+    "Lowest Cost With Bid Cap": "LOWEST_COST_WITH_BID_CAP",
     "Cost Cap": "COST_CAP",
-    "Bid Cap": "BID_CAP",
 }
 
 # Special Ad Category
