@@ -1,5 +1,10 @@
+"""
+Meta Marketing API Authentication
+"""
+
 from facebook_business.api import FacebookAdsApi
 from facebook_business.adobjects.adaccount import AdAccount
+
 
 class MetaAuth:
 
@@ -10,6 +15,7 @@ class MetaAuth:
         access_token: str,
         account_id: str,
     ):
+
         FacebookAdsApi.init(
             app_id=app_id,
             app_secret=app_secret,
@@ -17,6 +23,13 @@ class MetaAuth:
         )
 
         account = AdAccount(account_id)
-        account.api_get(fields=["id", "name"])
+
+        account.api_get(
+            fields=[
+                "id",
+                "name",
+                "account_status",
+            ]
+        )
 
         return True
