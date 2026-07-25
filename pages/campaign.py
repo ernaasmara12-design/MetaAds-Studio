@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 st.set_page_config(
@@ -6,14 +5,50 @@ st.set_page_config(
     page_icon="📢",
 )
 
-st.title("📢 Campaign")
+st.title("📢 Create Campaign")
 
 st.caption(
-    "Membuat Campaign Meta Ads menggunakan Marketing API"
+    "Buat Campaign Meta Ads menggunakan Marketing API"
+)
+
+st.divider()
+
+st.subheader("Basic Campaign Information")
+
+campaign_name = st.text_input(
+    "Campaign Name",
+    placeholder="Contoh: Summer Sale 2026"
+)
+
+objective = st.selectbox(
+    "Campaign Objective",
+    [
+        "Awareness",
+        "Traffic",
+        "Engagement",
+        "Leads",
+        "App Promotion",
+        "Sales",
+    ]
+)
+
+buying_type = st.selectbox(
+    "Buying Type",
+    [
+        "AUCTION",
+    ]
+)
+
+campaign_status = st.selectbox(
+    "Campaign Status",
+    [
+        "ACTIVE",
+        "PAUSED",
+    ]
 )
 
 st.divider()
 
 st.info(
-    "Halaman ini digunakan untuk membuat Campaign baru."
+    "Tahap berikutnya kita akan menambahkan pengaturan Budget."
 )
