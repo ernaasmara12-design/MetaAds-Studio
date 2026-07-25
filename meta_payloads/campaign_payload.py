@@ -1,40 +1,28 @@
-
 """
-Meta Marketing API - Campaign Payload Builder
+Campaign Payload Builder
 """
 
-from meta_enums.campaign import (
-    OBJECTIVES,
-    BUYING_TYPES,
-    CAMPAIGN_STATUS,
-    BID_STRATEGIES,
-    SPECIAL_AD_CATEGORIES,
-)
 
-
-def build_campaign_payload(data: dict) -> dict:
-    """
-    Build Campaign Payload
-    """
+def build_campaign_payload(data: dict):
 
     payload = {
-        "name": data["name"],
+        "name": data["campaign_name"],
         "objective": data["objective"],
-        "status": data.get("status", "PAUSED"),
-        "buying_type": data.get("buying_type", "AUCTION"),
-        "special_ad_categories": data.get(
-            "special_ad_categories",
-            []
-        ),
+        "status": data["status"],
+        "buying_type": data["buying_type"],
+        "special_ad_categories": [
+            data["special_category"]
+        ],
     }
 
-    if data.get("daily_budget"):
-        payload["daily_budget"] = data["daily_budget"]
+    if data["cbo"]:
 
-    if data.get("lifetime_budget"):
-        payload["lifetime_budget"] = data["lifetime_budget"]
+        if data["budget_type"] == "Daily":
 
-    if data.get("bid_strategy"):
-        payload["bid_strategy"] = data["bid_strategy"]
+            payload["daily_budget"] = int(data["budget"] * 100)
+
+        else:
+
+            payload["lifetime_budget"] = int(data["budget"] * 100)
 
     return payload
