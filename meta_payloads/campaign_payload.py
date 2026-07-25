@@ -5,7 +5,6 @@ Campaign Payload Builder
 from meta_enums.campaign import (
     OBJECTIVES,
     STATUS,
-    BUYING_TYPES,
     BUDGET_TYPES,
     BID_STRATEGIES,
     SPECIAL_AD_CATEGORIES,
