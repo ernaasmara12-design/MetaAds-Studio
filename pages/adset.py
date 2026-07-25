@@ -123,6 +123,101 @@ end_time = st.time_input(
 
 st.divider()
 
+# ==========================
+# CONVERSION
+# ==========================
+
+st.subheader("Conversion")
+
+conversion_location = st.selectbox(
+    "Conversion Location",
+    [
+        "Website",
+        "App",
+        "Messenger",
+        "WhatsApp",
+        "Instagram",
+    ]
+)
+
+performance_goal = st.selectbox(
+    "Performance Goal",
+    [
+        "Maximize Link Clicks",
+        "Maximize Landing Page Views",
+        "Maximize Conversions",
+        "Reach",
+    ]
+)
+
+pixel = st.selectbox(
+    "Meta Pixel",
+    [
+        "Tidak menggunakan Pixel"
+    ]
+)
+
+conversion_event = st.selectbox(
+    "Conversion Event",
+    [
+        "PageView",
+        "ViewContent",
+        "AddToCart",
+        "InitiateCheckout",
+        "Purchase",
+    ]
+)
+
+st.divider()
+
+# ==========================
+# AUDIENCE
+# ==========================
+
+st.subheader("Audience")
+
+country = st.selectbox(
+    "Country",
+    [
+        "Indonesia",
+    ]
+)
+
+min_age = st.slider(
+    "Minimum Age",
+    min_value=18,
+    max_value=65,
+    value=18,
+)
+
+max_age = st.slider(
+    "Maximum Age",
+    min_value=18,
+    max_value=65,
+    value=65,
+)
+
+gender = st.selectbox(
+    "Gender",
+    [
+        "All",
+        "Male",
+        "Female",
+    ]
+)
+
+language = st.text_input(
+    "Language (Opsional)",
+    placeholder="Contoh: Indonesian"
+)
+
+interest = st.text_area(
+    "Interests",
+    placeholder="Contoh: Fashion, Online Shopping, Parenting"
+)
+
+st.divider()
+
 st.subheader("Debug")
 
 st.json(
@@ -137,5 +232,15 @@ st.json(
         "start_time": str(start_time),
         "end_date": str(end_date),
         "end_time": str(end_time),
+        "conversion_location": conversion_location,
+        "performance_goal": performance_goal,
+        "pixel": pixel,
+        "conversion_event": conversion_event,
+        "country": country,
+        "min_age": min_age,
+        "max_age": max_age,
+        "gender": gender,
+        "language": language,
+        "interest": interest,
     }
 )
