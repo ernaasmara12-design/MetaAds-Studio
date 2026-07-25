@@ -2,27 +2,35 @@
 Campaign Payload Builder
 """
 
+from meta_enums.campaign import (
+    OBJECTIVES,
+    STATUS,
+    BUYING_TYPES,
+    BUDGET_TYPES,
+    BID_STRATEGIES,
+    SPECIAL_AD_CATEGORIES,
+)
+
 
 def build_campaign_payload(data: dict):
 
     payload = {
         "name": data["campaign_name"],
-        "objective": data["objective"],
-        "status": data["status"],
-        "buying_type": data["buying_type"],
-        "special_ad_categories": [
-            data["special_category"]
-        ],
+        "objective": OBJECTIVES[data["objective"]],
+        "status": STATUS[data["status"]],
+        "buying_type": BUYING_TYPES[data["buying_type"]],
+        "special_ad_categories": SPECIAL_AD_CATEGORIES[data["special_category"]],
     }
 
+    # Budget (CBO)
     if data["cbo"]:
 
-        if data["budget_type"] == "Daily":
+        budget_field = BUDGET_TYPES[data["budget_type"]]
 
-            payload["daily_budget"] = int(data["budget"] * 100)
+        payload[budget_field] = int(data["budget"] * 100)
 
-        else:
-
-            payload["lifetime_budget"] = int(data["budget"] * 100)
+    # Bid Strategy (opsional)
+    if data.get("bid_strategy"):
+        payload["bid_strategy"] = BID_STRATEGIES[data["bid_strategy"]]
 
     return payload
