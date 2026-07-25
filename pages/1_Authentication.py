@@ -1,33 +1,3 @@
-import streamlit as st
-
-from meta_services.auth import MetaAuth
-
-st.set_page_config(
-    page_title="Authentication",
-    page_icon="🔐",
-)
-
-st.title("🔐 Meta Marketing API Authentication")
-
-st.write("Masukkan kredensial Meta Marketing API.")
-
-app_id = st.text_input("App ID")
-
-app_secret = st.text_input(
-    "App Secret",
-    type="password",
-)
-
-access_token = st.text_area(
-    "Access Token",
-    height=180,
-)
-
-account_id = st.text_input(
-    "Ad Account ID",
-    placeholder="act_1019381049258713",
-)
-
 if st.button("Connect"):
 
     try:
@@ -48,7 +18,7 @@ if st.button("Connect"):
             st.error("Ad Account ID wajib diisi.")
             st.stop()
 
-        MetaAuth.connect(
+        account_info = MetaAuth.connect(
             app_id=app_id,
             app_secret=app_secret,
             access_token=access_token,
@@ -62,6 +32,9 @@ if st.button("Connect"):
         st.session_state["account_id"] = account_id
 
         st.success("✅ Connected to Meta Marketing API")
+
+        st.write("### Account Information")
+        st.write(account_info)
 
     except Exception as e:
 
