@@ -63,7 +63,7 @@ if st.button("Connect"):
         st.session_state["connection"] = connection
         st.session_state["user"] = connection["user"]
         st.session_state["account"] = connection["account"]
-      
+
         st.success("✅ Connected to Meta Marketing API")
 
         user = connection["user"]
@@ -76,38 +76,16 @@ if st.button("Connect"):
         col1, col2 = st.columns(2)
 
         with col1:
-            st.metric(
-                "👤 User",
-                user["name"]
-            )
-
-            st.metric(
-                "📢 Ad Account",
-                account["name"]
-            )
-
-            st.metric(
-                "💰 Currency",
-                account["currency"]
-            )
+            st.metric("👤 User", user["name"])
+            st.metric("📢 Ad Account", account["name"])
+            st.metric("💰 Currency", account["currency"])
 
         with col2:
-            st.metric(
-                "🆔 Account ID",
-                account["id"]
-            )
+            st.metric("🆔 Account ID", account["id"])
+            st.metric("🌍 Timezone", account["timezone_name"])
+            st.metric("📊 Status", str(account["account_status"]))
 
-            st.metric(
-                "🌍 Timezone",
-                account["timezone_name"]
-            )
-
-            st.metric(
-                "📊 Status",
-                str(account["account_status"])
-            )
-
-        except Exception as e:
+    except Exception as e:
 
         st.session_state.clear()
 
