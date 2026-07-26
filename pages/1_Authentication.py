@@ -107,8 +107,8 @@ if st.button("Connect"):
                 str(account["account_status"])
             )
 
-    except Exception as e:
+        except Exception as e:
 
-    st.session_state.clear()
+        st.session_state.clear()
 
-    st.error(f"❌ Authentication Failed\n\n{e}")
+        st.error(f"❌ Authentication Failed\n\n{e}")
