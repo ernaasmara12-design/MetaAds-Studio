@@ -1,5 +1,6 @@
 from facebook_business.adobjects.adset import AdSet
 
+from meta_enums.meta_api_enums import GENDERS
 
 def build_targeting(data):
 
