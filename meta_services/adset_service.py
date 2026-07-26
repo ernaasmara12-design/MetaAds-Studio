@@ -23,20 +23,16 @@ class AdSetService:
         adset = AdSet(parent_id=self.account_id)
 
         try:
-
-            adset.remote_create(
-                params=payload
-            )
-
+            adset.remote_create(params=payload)
             return adset
 
         except FacebookRequestError as e:
-    print("=" * 80)
-    print("META API ERROR")
-    print("Message :", e.api_error_message())
-    print("Code    :", e.api_error_code())
-    print("Subcode :", e.api_error_subcode())
-    print("Response:", e.body())
-    print("=" * 80)
+            print("=" * 80)
+            print("META API ERROR")
+            print("Message :", e.api_error_message())
+            print("Code    :", e.api_error_code())
+            print("Subcode :", e.api_error_subcode())
+            print(e)
+            print("=" * 80)
 
-    raise Exception(e.body())
+            raise Exception(e.api_error_message())
