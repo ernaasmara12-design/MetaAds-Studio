@@ -1,7 +1,6 @@
 
 import streamlit as st
 
-from meta_services.asset_service import AssetService
 from components.adset.basic import render_basic
 from components.adset.budget import render_budget
 from components.adset.schedule import render_schedule
