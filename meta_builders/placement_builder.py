@@ -32,4 +32,4 @@ def build_placement(data):
     if data.get("audience_network_positions"):
         placement[AdSet.Field.audience_network_positions] = data["audience_network_positions"]
 
-    return placement
+        return placement
