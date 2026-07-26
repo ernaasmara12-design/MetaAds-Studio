@@ -5,7 +5,7 @@ from components.adset.basic import render_basic
 from components.adset.budget import render_budget
 from components.adset.schedule import render_schedule
 from components.adset.conversion import render_conversion
-from components.adset.audience import render_audience
+from components.adset.targeting import render_targeting
 from components.adset.placement import render_placement
 from components.adset.optimization import render_optimization
 from components.adset.tracking import render_tracking
@@ -51,7 +51,7 @@ conversion = render_conversion()
 
 st.divider()
 
-audience = render_audience()
+targeting = render_targeting()
 
 st.divider()
 
@@ -75,7 +75,7 @@ st.json(
         **budget,
         **schedule,
         **conversion,
-        **audience,
+        **targeting,
         **placement,
         **optimization,
         **tracking,
