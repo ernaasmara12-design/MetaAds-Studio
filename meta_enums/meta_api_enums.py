@@ -74,3 +74,14 @@ BID_STRATEGIES = {
     "Cost Per Result Goal": "LOWEST_COST_WITH_MIN_ROAS",
     "Bid Cap": "LOWEST_COST_WITH_BID_CAP",
 }
+
+# ==================================================
+# PUBLISHER PLATFORMS
+# ==================================================
+
+PUBLISHER_PLATFORMS = {
+    "Facebook": "facebook",
+    "Instagram": "instagram",
+    "Messenger": "messenger",
+    "Audience Network": "audience_network",
+}
