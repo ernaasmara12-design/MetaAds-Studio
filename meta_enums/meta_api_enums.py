@@ -64,3 +64,13 @@ DEVICE_PLATFORMS = {
     "Desktop": ["desktop"],
     "All": ["mobile", "desktop"],
 }
+
+# ==================================================
+# BID STRATEGIES
+# ==================================================
+
+BID_STRATEGIES = {
+    "Highest Volume": "LOWEST_COST_WITHOUT_CAP",
+    "Cost Per Result Goal": "LOWEST_COST_WITH_MIN_ROAS",
+    "Bid Cap": "LOWEST_COST_WITH_BID_CAP",
+}
