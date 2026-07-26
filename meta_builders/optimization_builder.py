@@ -1,11 +1,8 @@
 from facebook_business.adobjects.adset import AdSet
 
-from meta_enums.adset import (
+from meta_enums.meta_api_enums import (
     BILLING_EVENTS,
     OPTIMIZATION_GOALS,
-)
-
-from meta_enums.campaign import (
     BID_STRATEGIES,
 )
 
