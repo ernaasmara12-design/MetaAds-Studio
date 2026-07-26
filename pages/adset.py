@@ -81,3 +81,49 @@ st.json(
         **tracking,
     }
 )
+
+from meta_validators.adset_validator import AdSetValidator
+from meta_services.adset_service import AdSetService
+
+if st.button(
+    "🚀 Create Ad Set",
+    use_container_width=True,
+):
+
+    adset_data = {
+        **basic,
+        **budget,
+        **schedule,
+        **conversion,
+        **audience,
+        **placement,
+        **optimization,
+        **tracking,
+    }
+
+    errors = AdSetValidator.validate(adset_data)
+
+    if errors:
+
+        for error in errors:
+            st.error(error)
+
+    else:
+
+        service = AdSetService(
+            st.session_state["account_id"]
+        )
+
+        try:
+
+            result = service.create_adset(
+                adset_data
+            )
+
+            st.success(
+                f"Ad Set berhasil dibuat.\n\nID: {result['id']}"
+            )
+
+        except Exception as e:
+
+            st.exception(e)
