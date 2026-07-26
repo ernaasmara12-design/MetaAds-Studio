@@ -5,6 +5,7 @@ from meta_builders.optimization_builder import build_optimization
 from meta_builders.schedule_builder import build_schedule
 from meta_builders.targeting_builder import build_targeting
 from meta_builders.placement_builder import build_placement
+from meta_builders.promoted_object_builder import build_promoted_object
 
 def build_adset_payload(data):
 
@@ -17,11 +18,13 @@ def build_adset_payload(data):
         AdSet.Field.status: "PAUSED",
 
     }
-
+    
     payload.update(build_budget(data))
 payload.update(build_schedule(data))
 payload.update(build_optimization(data))
 payload.update(build_targeting(data))
 payload.update(build_placement(data))
+payload.update(build_promoted_object(data))
+    
 
     return payload
