@@ -2,6 +2,7 @@
 import streamlit as st
 
 from meta_services.asset_service import AssetService
+from components.adset.basic import render_basic
 
 st.set_page_config(
     page_title="Ad Set",
@@ -26,52 +27,8 @@ if "account_id" not in st.session_state:
 
     st.stop()
 
-# ==========================
-# LOAD CAMPAIGNS
-# ==========================
-
-service = AssetService(
+basic = render_basic(
     st.session_state["account_id"]
-)
-
-campaign_options = {}
-
-try:
-
-    campaigns = service.get_campaigns()
-
-    for campaign in campaigns:
-
-        campaign_options[
-            campaign["name"]
-        ] = campaign["id"]
-
-except Exception as e:
-
-    st.error(e)
-
-# ==========================
-# BASIC INFORMATION
-# ==========================
-
-st.subheader("Basic Information")
-
-adset_name = st.text_input(
-    "Ad Set Name",
-    placeholder="Contoh : Traffic Indonesia"
-)
-
-selected_campaign = st.selectbox(
-    "Campaign",
-    list(campaign_options.keys())
-)
-
-status = st.selectbox(
-    "Status",
-    [
-        "Active",
-        "Paused",
-    ]
 )
 
 st.divider()
@@ -222,20 +179,22 @@ st.subheader("Debug")
 
 st.json(
     {
-        "campaign_name": selected_campaign,
-        "campaign_id": campaign_options.get(selected_campaign),
-        "adset_name": adset_name,
-        "status": status,
+        **basic,
+
         "budget_type": budget_type,
         "budget": budget,
+
         "start_date": str(start_date),
         "start_time": str(start_time),
+
         "end_date": str(end_date),
         "end_time": str(end_time),
+
         "conversion_location": conversion_location,
         "performance_goal": performance_goal,
         "pixel": pixel,
         "conversion_event": conversion_event,
+
         "country": country,
         "min_age": min_age,
         "max_age": max_age,
