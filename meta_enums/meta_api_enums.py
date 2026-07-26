@@ -85,3 +85,7 @@ PUBLISHER_PLATFORMS = {
     "Messenger": "messenger",
     "Audience Network": "audience_network",
 }
+ADSET_STATUS = {
+    "Active": "ACTIVE",
+    "Paused": "PAUSED",
+}
