@@ -7,18 +7,22 @@ def build_schedule(data):
 
     payload = {}
 
-    if data.get("start_date") and data.get("start_time"):
+    start_date = data.get("start_date")
+    start_time = data.get("start_time")
 
+    if start_date and start_time:
         payload[AdSet.Field.start_time] = datetime.combine(
-            data["start_date"],
-            data["start_time"]
+            start_date,
+            start_time
         ).isoformat()
 
-    if data.get("end_date") and data.get("end_time"):
+    end_date = data.get("end_date")
+    end_time = data.get("end_time")
 
+    if end_date and end_time:
         payload[AdSet.Field.end_time] = datetime.combine(
-            data["end_date"],
-            data["end_time"]
+            end_date,
+            end_time
         ).isoformat()
 
     return payload
