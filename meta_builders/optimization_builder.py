@@ -5,6 +5,10 @@ from meta_enums.adset import (
     OPTIMIZATION_GOALS,
 )
 
+from meta_enums.campaign import (
+    BID_STRATEGIES,
+)
+
 
 def build_optimization(data):
 
@@ -24,9 +28,11 @@ def build_optimization(data):
     if optimization:
         payload[AdSet.Field.optimization_goal] = optimization
 
-    bid_strategy = data.get("bid_strategy")
+    strategy = BID_STRATEGIES.get(
+        data.get("bid_strategy")
+    )
 
-    if bid_strategy:
-        payload[AdSet.Field.bid_strategy] = bid_strategy
+    if strategy:
+        payload[AdSet.Field.bid_strategy] = strategy
 
     return payload
