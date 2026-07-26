@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 from components.adset.basic import render_basic
@@ -9,6 +8,10 @@ from components.adset.targeting import render_targeting
 from components.adset.placement import render_placement
 from components.adset.optimization import render_optimization
 from components.adset.tracking import render_tracking
+
+from meta_validators.adset_validator import AdSetValidator
+from meta_services.adset_service import AdSetService
+
 
 st.set_page_config(
     page_title="Ad Set",
@@ -23,83 +26,116 @@ st.caption(
 
 st.divider()
 
-# ==========================
+# ==================================================
 # LOGIN CHECK
-# ==========================
+# ==================================================
 
-if "account_id" not in st.session_state:
+if (
+    "connected" not in st.session_state
+    or not st.session_state["connected"]
+):
 
     st.error("Silakan login terlebih dahulu.")
 
     st.stop()
+
+# ==================================================
+# BASIC
+# ==================================================
 
 basic = render_basic(
     st.session_state["account_id"]
 )
 
 st.divider()
-# ==========================
+
+# ==================================================
+# BUDGET
+# ==================================================
+
 budget = render_budget()
 
 st.divider()
+
+# ==================================================
+# SCHEDULE
+# ==================================================
 
 schedule = render_schedule()
 
 st.divider()
 
+# ==================================================
+# CONVERSION
+# ==================================================
+
 conversion = render_conversion()
 
 st.divider()
+
+# ==================================================
+# TARGETING
+# ==================================================
 
 targeting = render_targeting()
 
 st.divider()
 
+# ==================================================
+# PLACEMENT
+# ==================================================
+
 placement = render_placement()
 
 st.divider()
+
+# ==================================================
+# OPTIMIZATION
+# ==================================================
 
 optimization = render_optimization()
 
 st.divider()
 
+# ==================================================
+# TRACKING
+# ==================================================
+
 tracking = render_tracking()
 
 st.divider()
 
-st.subheader("Debug")
+# ==================================================
+# BUILD DATA
+# ==================================================
 
-st.json(
-    {
-        **basic,
-        **budget,
-        **schedule,
-        **conversion,
-        **targeting,
-        **placement,
-        **optimization,
-        **tracking,
-    }
-)
+adset_data = {
+    **basic,
+    **budget,
+    **schedule,
+    **conversion,
+    **targeting,
+    **placement,
+    **optimization,
+    **tracking,
+}
 
-from meta_validators.adset_validator import AdSetValidator
-from meta_services.adset_service import AdSetService
+# ==================================================
+# DEBUG
+# ==================================================
+
+with st.expander("🐞 Debug Payload", expanded=False):
+
+    st.json(adset_data)
+
+# ==================================================
+# CREATE AD SET
+# ==================================================
 
 if st.button(
     "🚀 Create Ad Set",
     use_container_width=True,
 ):
-
-    adset_data = {
-        **basic,
-        **budget,
-        **schedule,
-        **conversion,
-        **audience,
-        **placement,
-        **optimization,
-        **tracking,
-    }
 
     errors = AdSetValidator.validate(adset_data)
 
@@ -108,22 +144,25 @@ if st.button(
         for error in errors:
             st.error(error)
 
-    else:
+        st.stop()
+
+    try:
 
         service = AdSetService(
-            st.session_state["account_id"]
+            account_id=st.session_state["account_id"],
         )
 
-        try:
+        result = service.create_adset(
+            adset_data
+        )
 
-            result = service.create_adset(
-                adset_data
-            )
+        st.success("✅ Ad Set berhasil dibuat.")
 
-            st.success(
-                f"Ad Set berhasil dibuat.\n\nID: {result['id']}"
-            )
+        st.code(
+            result["id"],
+            language="text",
+        )
 
-        except Exception as e:
+    except Exception as e:
 
-            st.exception(e)
+        st.exception(e)
