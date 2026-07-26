@@ -2,8 +2,9 @@ from facebook_business.adobjects.adset import AdSet
 from facebook_business.exceptions import FacebookRequestError
 
 from meta_payloads.adset_payload import build_adset_payload
-from meta_validators.meta_validator import validate_required_fields
-from meta_services.logger import log_payload
+from meta_validators.adset_validator import AdSetValidator
+from meta_services.adset_service import AdSetService
+from meta_builders.objective_builder import build_objective_defaults
 
 
 class AdSetService:
