@@ -1,4 +1,6 @@
-from meta_enums.campaign import OBJECTIVES
+from meta_enums.meta_api_enums import (
+    OBJECTIVES,
+)
 
 
 def build_objective_defaults(data):
@@ -9,53 +11,44 @@ def build_objective_defaults(data):
 
     # Traffic
     if objective == OBJECTIVES["Traffic"]:
-
         config = {
             "billing_event": "Link Clicks",
-            "optimization_goal": "Link Clicks"
+            "optimization_goal": "Link Clicks",
         }
 
     # Awareness
     elif objective == OBJECTIVES["Awareness"]:
-
         config = {
             "billing_event": "Impressions",
-            "optimization_goal": "Reach"
+            "optimization_goal": "Reach",
         }
 
     # Engagement
     elif objective == OBJECTIVES["Engagement"]:
-
         config = {
             "billing_event": "Impressions",
-            "optimization_goal": "Post Engagement"
+            "optimization_goal": "Post Engagement",
         }
 
     # Leads
-
     elif objective == OBJECTIVES["Leads"]:
-
         config = {
             "billing_event": "Impressions",
-            "optimization_goal": "Conversions"
+            "optimization_goal": "Conversions",
         }
 
     # Sales
-
     elif objective == OBJECTIVES["Sales"]:
-
         config = {
             "billing_event": "Impressions",
-            "optimization_goal": "Conversions"
+            "optimization_goal": "Conversions",
         }
 
     # App Promotion
-
     elif objective == OBJECTIVES["App Promotion"]:
-
         config = {
             "billing_event": "Impressions",
-            "optimization_goal": "ThruPlay"
+            "optimization_goal": "ThruPlay",
         }
 
     return config
