@@ -1,3 +1,5 @@
+import json
+
 from facebook_business.adobjects.adset import AdSet
 from facebook_business.exceptions import FacebookRequestError
 
@@ -13,6 +15,11 @@ class AdSetService:
 
         payload = build_adset_payload(data)
 
+        print("=" * 80)
+        print("ADSET PAYLOAD")
+        print(json.dumps(payload, indent=4, default=str))
+        print("=" * 80)
+
         adset = AdSet(parent_id=self.account_id)
 
         try:
@@ -24,4 +31,10 @@ class AdSetService:
             return adset
 
         except FacebookRequestError as e:
+
+            print("=" * 80)
+            print("META API ERROR")
+            print(e.body())
+            print("=" * 80)
+
             raise Exception(e.api_error_message())
