@@ -46,6 +46,7 @@ class MetaAuth:
         )
 
         return {
-            "user": user_info,
-            "account": account_info,
-        }
+    "user": user_info,
+    "account": account_info,
+    "access_token": access_token,
+}
