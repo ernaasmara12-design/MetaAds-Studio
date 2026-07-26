@@ -8,14 +8,6 @@ def render_identity(account_id):
     st.subheader("Identity")
 
     service = AssetService(account_id)
-  
-def get_pages(self):
-
-    return self.account.get_ad_creative_previews()
-
-def get_instagram_accounts(self):
-
-    return [] 
 
     pages = {}
     instagram_accounts = {}
