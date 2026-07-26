@@ -56,12 +56,14 @@ if st.button("Connect"):
         )
 
         st.session_state["connected"] = True
-        st.session_state["app_id"] = app_id
-        st.session_state["app_secret"] = app_secret
-        st.session_state["access_token"] = access_token
-        st.session_state["account_id"] = account_id
-        st.session_state["connection"] = connection
+st.session_state["app_id"] = app_id
+st.session_state["app_secret"] = app_secret
+st.session_state["access_token"] = access_token
+st.session_state["account_id"] = account_id
 
+st.session_state["connection"] = connection
+st.session_state["user"] = connection["user"]
+st.session_state["account"] = connection["account"]
         st.success("✅ Connected to Meta Marketing API")
 
         user = connection["user"]
