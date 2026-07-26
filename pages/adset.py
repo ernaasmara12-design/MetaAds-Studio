@@ -120,6 +120,12 @@ adset_data = {
     **tracking,
 }
 
+defaults = build_objective_defaults(adset_data)
+
+for key, value in defaults.items():
+    if not adset_data.get(key):
+        adset_data[key] = value
+
 # ==================================================
 # DEBUG
 # ==================================================
