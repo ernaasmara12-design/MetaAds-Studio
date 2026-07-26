@@ -3,6 +3,8 @@ import streamlit as st
 
 from meta_services.asset_service import AssetService
 from components.adset.basic import render_basic
+from components.adset.budget import render_budget
+from components.adset.schedule import render_schedule
 
 st.set_page_config(
     page_title="Ad Set",
@@ -33,50 +35,11 @@ basic = render_basic(
 
 st.divider()
 # ==========================
-# BUDGET
-# ==========================
-
-st.subheader("Budget")
-
-budget_type = st.radio(
-    "Budget Type",
-    [
-        "Daily Budget",
-        "Lifetime Budget",
-    ],
-    horizontal=True,
-)
-
-budget = st.number_input(
-    "Budget (Rp)",
-    min_value=0,
-    value=100000,
-    step=1000,
-)
+budget = render_budget()
 
 st.divider()
 
-# ==========================
-# SCHEDULE
-# ==========================
-
-st.subheader("Schedule")
-
-start_date = st.date_input(
-    "Start Date"
-)
-
-start_time = st.time_input(
-    "Start Time"
-)
-
-end_date = st.date_input(
-    "End Date"
-)
-
-end_time = st.time_input(
-    "End Time"
-)
+schedule = render_schedule()
 
 st.divider()
 
@@ -180,15 +143,8 @@ st.subheader("Debug")
 st.json(
     {
         **basic,
-
-        "budget_type": budget_type,
-        "budget": budget,
-
-        "start_date": str(start_date),
-        "start_time": str(start_time),
-
-        "end_date": str(end_date),
-        "end_time": str(end_time),
+        **budget,
+        **schedule,
 
         "conversion_location": conversion_location,
         "performance_goal": performance_goal,
