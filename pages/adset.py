@@ -11,7 +11,7 @@ from components.adset.tracking import render_tracking
 
 from meta_validators.adset_validator import AdSetValidator
 from meta_services.adset_service import AdSetService
-
+from meta_builders.objective_builder import build_objective_defaults
 
 st.set_page_config(
     page_title="Ad Set",
