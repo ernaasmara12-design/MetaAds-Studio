@@ -7,16 +7,6 @@ from facebook_business.adobjects.adaccount import AdAccount
 
 class AssetService:
 
-    ...
-
-    def get_pages(self):
-
-        return self.account.get_ad_creative_previews()
-
-    def get_instagram_accounts(self):
-
-        return []
-
     def __init__(self, account_id: str):
         self.account = AdAccount(account_id)
 
@@ -34,6 +24,20 @@ class AssetService:
                 "objective",
             ]
         )
+
+    # ==========================
+    # Facebook Pages
+    # ==========================
+
+    def get_pages(self):
+        raise NotImplementedError("get_pages() akan diimplementasikan menggunakan Graph API.")
+
+    # ==========================
+    # Instagram Accounts
+    # ==========================
+
+    def get_instagram_accounts(self):
+        raise NotImplementedError("get_instagram_accounts() akan diimplementasikan menggunakan Graph API.")
 
     # ==========================
     # Pixels
@@ -60,3 +64,38 @@ class AssetService:
                 "name",
             ]
         )
+
+    # ==========================
+    # Saved Audiences
+    # ==========================
+
+    def get_saved_audiences(self):
+        raise NotImplementedError
+
+    # ==========================
+    # Catalogs
+    # ==========================
+
+    def get_catalogs(self):
+        raise NotImplementedError
+
+    # ==========================
+    # Forms
+    # ==========================
+
+    def get_forms(self):
+        raise NotImplementedError
+
+    # ==========================
+    # Images
+    # ==========================
+
+    def get_ad_images(self):
+        raise NotImplementedError
+
+    # ==========================
+    # Videos
+    # ==========================
+
+    def get_ad_videos(self):
+        raise NotImplementedError
