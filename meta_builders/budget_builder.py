@@ -5,9 +5,14 @@ def build_budget(data):
 
     payload = {}
 
-    budget = int(float(data["budget"]) * 100)
+    budget = data.get("budget")
 
-    if data["budget_type"] == "Daily Budget":
+    if not budget:
+        return payload
+
+    budget = int(float(budget) * 100)
+
+    if data.get("budget_type") == "Daily Budget":
         payload[AdSet.Field.daily_budget] = budget
     else:
         payload[AdSet.Field.lifetime_budget] = budget
