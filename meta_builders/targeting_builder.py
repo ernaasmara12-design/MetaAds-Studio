@@ -23,11 +23,11 @@ def build_targeting(data):
     # Gender
     gender = data.get("gender")
 
-    if gender == "Male":
-        targeting["genders"] = [1]
+    if gender:
+        gender_value = GENDERS.get(gender)
 
-    elif gender == "Female":
-        targeting["genders"] = [2]
+    if gender_value:
+        targeting["genders"] = gender_value
 
     # Interest
     interests = data.get("interests", [])
