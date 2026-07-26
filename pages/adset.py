@@ -7,6 +7,8 @@ from components.adset.schedule import render_schedule
 from components.adset.conversion import render_conversion
 from components.adset.audience import render_audience
 from components.adset.placement import render_placement
+from components.adset.optimization import render_optimization
+from components.adset.tracking import render_tracking
 
 st.set_page_config(
     page_title="Ad Set",
@@ -57,6 +59,14 @@ placement = render_placement()
 
 st.divider()
 
+optimization = render_optimization()
+
+st.divider()
+
+tracking = render_tracking()
+
+st.divider()
+
 st.subheader("Debug")
 
 st.json(
@@ -67,5 +77,7 @@ st.json(
         **conversion,
         **audience,
         **placement,
+        **optimization,
+        **tracking,
     }
 )
