@@ -31,10 +31,12 @@ class AdSetService:
             return adset
 
         except FacebookRequestError as e:
+    print("=" * 80)
+    print("META API ERROR")
+    print("Message :", e.api_error_message())
+    print("Code    :", e.api_error_code())
+    print("Subcode :", e.api_error_subcode())
+    print("Response:", e.body())
+    print("=" * 80)
 
-            print("=" * 80)
-            print("META API ERROR")
-            print(e.body())
-            print("=" * 80)
-
-            raise Exception(e.api_error_message())
+    raise Exception(e.body())
