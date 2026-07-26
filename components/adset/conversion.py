@@ -1,5 +1,10 @@
 import streamlit as st
 
+from meta_enums.meta_api_enums import (
+    CONVERSION_LOCATIONS,
+    CUSTOM_EVENTS,
+)
+
 
 def render_conversion():
 
@@ -7,13 +12,7 @@ def render_conversion():
 
     conversion_location = st.selectbox(
         "Conversion Location",
-        [
-            "Website",
-            "App",
-            "Messenger",
-            "WhatsApp",
-            "Instagram",
-        ],
+        list(CONVERSION_LOCATIONS.keys())
     )
 
     performance_goal = st.selectbox(
@@ -35,13 +34,7 @@ def render_conversion():
 
     conversion_event = st.selectbox(
         "Conversion Event",
-        [
-            "PageView",
-            "ViewContent",
-            "AddToCart",
-            "InitiateCheckout",
-            "Purchase",
-        ],
+        list(CUSTOM_EVENTS.keys())
     )
 
     return {
