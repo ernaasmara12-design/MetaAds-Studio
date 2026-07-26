@@ -1,6 +1,6 @@
 from facebook_business.adobjects.adset import AdSet
 
-from meta_enums.meta_api_enums import ADSET_STATUS
+from meta_enums.meta_api_enums import STATUS
 
 from meta_builders.budget_builder import build_budget
 from meta_builders.optimization_builder import build_optimization
@@ -15,7 +15,7 @@ def build_adset_payload(data):
     payload = {
         AdSet.Field.name: data.get("adset_name"),
         AdSet.Field.campaign_id: data.get("campaign_id"),
-        AdSet.Field.status: ADSET_STATUS["Paused"],
+        AdSet.Field.status: STATUS["Paused"],
     }
 
     payload.update(build_budget(data))
