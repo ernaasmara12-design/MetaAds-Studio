@@ -7,24 +7,20 @@ from meta_builders.targeting_builder import build_targeting
 from meta_builders.placement_builder import build_placement
 from meta_builders.promoted_object_builder import build_promoted_object
 
+
 def build_adset_payload(data):
 
     payload = {
-
         AdSet.Field.name: data["adset_name"],
-
         AdSet.Field.campaign_id: data["campaign_id"],
-
         AdSet.Field.status: "PAUSED",
-
     }
-    
+
     payload.update(build_budget(data))
-payload.update(build_schedule(data))
-payload.update(build_optimization(data))
-payload.update(build_targeting(data))
-payload.update(build_placement(data))
-payload.update(build_promoted_object(data))
-    
+    payload.update(build_schedule(data))
+    payload.update(build_optimization(data))
+    payload.update(build_targeting(data))
+    payload.update(build_placement(data))
+    payload.update(build_promoted_object(data))
 
     return payload
