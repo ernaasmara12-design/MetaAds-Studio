@@ -3,48 +3,57 @@ Meta Marketing API Asset Service
 """
 
 from facebook_business.adobjects.adaccount import AdAccount
-from facebook_business.api import FacebookAdsApi
+
 
 class AssetService:
+    """
+    Service untuk mengambil seluruh asset Meta Marketing API.
+    Seluruh halaman (Campaign, Ad Set, Ads, Dashboard)
+    menggunakan service ini.
+    """
 
     def __init__(self, account_id: str):
         self.account = AdAccount(account_id)
 
-    # ==========================
-    # Campaigns
-    # ==========================
+    # ==================================================
+    # Campaign Assets
+    # ==================================================
 
     def get_campaigns(self):
-
         return self.account.get_campaigns(
             fields=[
                 "id",
                 "name",
-                "status",
                 "objective",
+                "status",
             ]
         )
 
-    # ==========================
-    # Facebook Pages
-    # ==========================
+    # ==================================================
+    # Identity Assets
+    # ==================================================
 
     def get_pages(self):
-        raise NotImplementedError("get_pages() akan diimplementasikan menggunakan Graph API.")
-
-    # ==========================
-    # Instagram Accounts
-    # ==========================
+        """
+        Akan diimplementasikan menggunakan Graph API.
+        """
+        raise NotImplementedError(
+            "Facebook Pages belum diimplementasikan."
+        )
 
     def get_instagram_accounts(self):
-        raise NotImplementedError("get_instagram_accounts() akan diimplementasikan menggunakan Graph API.")
+        """
+        Akan diimplementasikan menggunakan Graph API.
+        """
+        raise NotImplementedError(
+            "Instagram Accounts belum diimplementasikan."
+        )
 
-    # ==========================
-    # Pixels
-    # ==========================
+    # ==================================================
+    # Audience Assets
+    # ==================================================
 
     def get_pixels(self):
-
         return self.account.get_ads_pixels(
             fields=[
                 "id",
@@ -52,12 +61,7 @@ class AssetService:
             ]
         )
 
-    # ==========================
-    # Custom Audiences
-    # ==========================
-
     def get_custom_audiences(self):
-
         return self.account.get_custom_audiences(
             fields=[
                 "id",
@@ -65,37 +69,39 @@ class AssetService:
             ]
         )
 
-    # ==========================
-    # Saved Audiences
-    # ==========================
-
     def get_saved_audiences(self):
-        raise NotImplementedError
+        raise NotImplementedError(
+            "Saved Audiences belum diimplementasikan."
+        )
 
-    # ==========================
-    # Catalogs
-    # ==========================
+    # ==================================================
+    # Commerce Assets
+    # ==================================================
 
     def get_catalogs(self):
-        raise NotImplementedError
+        raise NotImplementedError(
+            "Catalogs belum diimplementasikan."
+        )
 
-    # ==========================
-    # Forms
-    # ==========================
+    # ==================================================
+    # Lead Assets
+    # ==================================================
 
     def get_forms(self):
-        raise NotImplementedError
+        raise NotImplementedError(
+            "Lead Forms belum diimplementasikan."
+        )
 
-    # ==========================
-    # Images
-    # ==========================
+    # ==================================================
+    # Creative Assets
+    # ==================================================
 
     def get_ad_images(self):
-        raise NotImplementedError
-
-    # ==========================
-    # Videos
-    # ==========================
+        raise NotImplementedError(
+            "Ad Images belum diimplementasikan."
+        )
 
     def get_ad_videos(self):
-        raise NotImplementedError
+        raise NotImplementedError(
+            "Ad Videos belum diimplementasikan."
+        )
