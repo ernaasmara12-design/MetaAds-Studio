@@ -8,6 +8,9 @@ from facebook_business.adobjects.user import User
 
 
 class MetaAuth:
+    """
+    Menangani autentikasi Meta Marketing API.
+    """
 
     @staticmethod
     def connect(
@@ -17,12 +20,14 @@ class MetaAuth:
         account_id: str,
     ):
 
+        # Inisialisasi SDK
         FacebookAdsApi.init(
             app_id=app_id,
             app_secret=app_secret,
             access_token=access_token,
         )
 
+        # Ambil informasi user
         user = User(fbid="me")
 
         user_info = user.api_get(
@@ -32,6 +37,7 @@ class MetaAuth:
             ]
         )
 
+        # Ambil informasi Ad Account
         account = AdAccount(account_id)
 
         account_info = account.api_get(
@@ -49,4 +55,5 @@ class MetaAuth:
             "user": user_info,
             "account": account_info,
             "access_token": access_token,
+            "api": FacebookAdsApi.get_default_api(),
         }
