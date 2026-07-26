@@ -7,6 +7,16 @@ from facebook_business.adobjects.adaccount import AdAccount
 
 class AssetService:
 
+    ...
+
+    def get_pages(self):
+
+        return self.account.get_ad_creative_previews()
+
+    def get_instagram_accounts(self):
+
+        return []
+
     def __init__(self, account_id: str):
         self.account = AdAccount(account_id)
 
